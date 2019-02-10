@@ -11,11 +11,12 @@ public class RedBlueDoubleStackImpl<E> implements  RedBlueDoubleStack<E> {
     // Blue on bottom.
 
 
-    protected LinkedDeque<E> listRedBlue = new LinkedDeque<>();
-    protected int redSize = 0;
-    protected boolean redIsEmpty = true;
-    protected int blueSize = 0;
-    protected boolean blueIsEmpty = true;
+    //Create the class vars to operate the double stack.
+    private LinkedDeque<E> listRedBlue = new LinkedDeque<>();
+    private int redSize = 0;
+    private boolean redIsEmpty = true;
+    private int blueSize = 0;
+    private boolean blueIsEmpty = true;
 
     /**
      * Adds the element to the top of the Red Stack, unless the element is null.
@@ -31,6 +32,7 @@ public class RedBlueDoubleStackImpl<E> implements  RedBlueDoubleStack<E> {
         }
         else
         {
+            //Iterate red size up.
             redSize++;
             //Add the element to the top of the que (the red portion.)
             listRedBlue.offerFirst(element);
@@ -48,12 +50,14 @@ public class RedBlueDoubleStackImpl<E> implements  RedBlueDoubleStack<E> {
     @Override
     public void pushBlue(E element) {
 
+        //Checks if the element parameter is null.
         if(element == null)
         {
             //Do nothing.
         }
         else
         {
+            //Iterate blue size up.
             blueSize++;
             listRedBlue.offer(element);
         }
@@ -68,12 +72,15 @@ public class RedBlueDoubleStackImpl<E> implements  RedBlueDoubleStack<E> {
      */
     @Override
     public E popRed() {
+
+        //Check if the size of the entire list is greater than 0.
         if(listRedBlue.size() < 0)
         {
             return null;
         }
         else
         {
+            //Iterate red size down.
             redSize--;
             return listRedBlue.poll();
         }
@@ -88,12 +95,16 @@ public class RedBlueDoubleStackImpl<E> implements  RedBlueDoubleStack<E> {
      */
     @Override
     public E popBlue() {
+
+        //Checks if blueSize has any elements before continuing.
         if(blueSize < 0)
         {
             return null;
         }
         else
         {
+
+            //Iterate size down.
             blueSize--;
             return listRedBlue.pollLast();
         }
@@ -107,6 +118,8 @@ public class RedBlueDoubleStackImpl<E> implements  RedBlueDoubleStack<E> {
      */
     @Override
     public E peekRed() {
+
+        //Checks if redSize has any elements before continuing.
         if(redSize < 0)
         {
             return null;
@@ -125,6 +138,8 @@ public class RedBlueDoubleStackImpl<E> implements  RedBlueDoubleStack<E> {
      */
     @Override
     public E peekBlue() {
+
+        //Checks if blueSize has any elements before continuing.
         if(blueSize < 0)
         {
             return null;
@@ -140,6 +155,8 @@ public class RedBlueDoubleStackImpl<E> implements  RedBlueDoubleStack<E> {
      */
     @Override
     public int sizeBlue() {
+
+        //Return blueSize class var we have on top.
         return blueSize;
     }
 
@@ -148,6 +165,8 @@ public class RedBlueDoubleStackImpl<E> implements  RedBlueDoubleStack<E> {
      */
     @Override
     public int sizeRed() {
+
+        //Return redSize class var we have on top.
         return redSize;
     }
 
@@ -156,6 +175,8 @@ public class RedBlueDoubleStackImpl<E> implements  RedBlueDoubleStack<E> {
      */
     @Override
     public boolean isBlueEmpty() {
+
+        //Checks if the blue stack has any elements.
         if(blueSize == 0)
         {
             return true;
@@ -171,6 +192,8 @@ public class RedBlueDoubleStackImpl<E> implements  RedBlueDoubleStack<E> {
      */
     @Override
     public boolean isRedEmpty() {
+
+        //Checks if the red stack has any elements.
         if(redSize == 0)
         {
             return true;
